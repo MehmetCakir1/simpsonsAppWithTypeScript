@@ -9,11 +9,10 @@ const initialState:IStateProps={
     error:"",
 }
 
-const API_URL = "https://5fc9346b2af77700165ae514.mockapi.io/simpsons";
 
 export const getSimpsons = createAsyncThunk(
     'simpsons/getSimpsons', async() => {
-        return fetch(API_URL)
+        return fetch("https://5fc9346b2af77700165ae514.mockapi.io/simpsons")
         .then(res=>{
             return res.json() 
         })
@@ -32,7 +31,7 @@ const simpsonsSlice = createSlice({
           })
         builder.addCase(getSimpsons.fulfilled,(state:IStateProps,action:PayloadAction<any>)=>{
             state.loading=false;
-            state.simpsons.push(action.payload)
+            state.simpsons=(action.payload) 
         })
         builder.addCase(getSimpsons.rejected,(state:IStateProps)=>{
             state.loading=false;
