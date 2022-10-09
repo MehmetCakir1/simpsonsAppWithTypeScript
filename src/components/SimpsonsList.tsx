@@ -1,18 +1,21 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { getSimpsons } from "../features/simpsonsSlice";
+import { getSimpsons} from "../features/simpsonsSlice";
 import { ISimpson } from "../types/interfaces";
 import Singlesimpson from "./Singlesimpson";
+import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 const SimpsonsList = () => {
+  const navigate=useNavigate()
     const dispatch=useAppDispatch()
     const {simpsons}=useAppSelector(state=>state.simpsons)
     const {loading}=useAppSelector(state=>state.simpsons)
-  // console.log(loading);
-  
+  console.log(simpsons);
   useEffect(() => {
-    dispatch(getSimpsons())
+    if(simpsons.length==0){
+      dispatch(getSimpsons())
+    }
   }, [])
 
   if(!loading){
@@ -32,7 +35,10 @@ const SimpsonsList = () => {
           )
         }))
       }
-    
+      <button className="block m-auto text-5xl text-slate-500 mt-2 bg-transparent"
+      onClick={()=>navigate("/add")}
+      ><AiOutlinePlusCircle/>
+      </button>
     </div>
   )
 }

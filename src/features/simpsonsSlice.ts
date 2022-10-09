@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { IStateProps,ISimpson } from "../types/interfaces";
-import { isTemplateExpression } from "typescript";
 
 const initialState:IStateProps={
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
@@ -47,6 +46,9 @@ const simpsonsSlice = createSlice({
                 state.simpsons?.splice(lowerIndex+1,0,lower)
             }
         },
+        addNewItem:(state,action: PayloadAction<ISimpson>)=>{
+            state.simpsons=[...state.simpsons,action.payload]
+        }
     },
     extraReducers(builder:any){
         builder.addCase(getSimpsons.pending, (state: IStateProps) => {
@@ -54,7 +56,7 @@ const simpsonsSlice = createSlice({
         })
         builder.addCase(getSimpsons.fulfilled,(state:IStateProps,action:PayloadAction<any>)=>{
             state.loading=false;
-            state.simpsons=(action.payload) 
+            state.simpsons=(action.payload)
         })
         builder.addCase(getSimpsons.rejected,(state:IStateProps)=>{
             state.loading=false;
@@ -64,5 +66,5 @@ const simpsonsSlice = createSlice({
     }
 })
 
-export const {removeItem,upItem,downItem}=simpsonsSlice.actions
+export const {removeItem,upItem,downItem,addNewItem}=simpsonsSlice.actions
 export default simpsonsSlice.reducer
