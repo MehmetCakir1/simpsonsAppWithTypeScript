@@ -11,7 +11,7 @@ const Detail = () => {
 // console.log(loading)
 const {name,avatar,job,description}=state
 console.log(avatar)
-
+const defaultImg="../images/Simpson.png"
 
   return (
     <> 
@@ -22,10 +22,10 @@ console.log(avatar)
       :
       (
         <div className='flex flex-col items-center justify-center max-w-xl m-auto mt-9'>
-        <img src={avatar.includes("revision") ? avatar.split("revision")[0] : avatar.startsWith("https://") && avatar.endsWith(".png")|| avatar.endsWith(".jpg") ? avatar : "images/Simpson.png"} alt={name} className="h-[250px]" />
-        <p className='font-bold text-2xl py-3 text-red-800'>{name}</p>
-        <p className='text-xl py-1'>{job}</p>
-        <p className='indent-3 py-1'>{description}</p>
+        <img src={avatar.includes("revision") ? avatar.split("revision")[0] : avatar.startsWith("https://") && avatar.endsWith(".png")|| avatar.endsWith(".jpg") ? avatar : defaultImg} alt={name} className="h-[250px]" />
+        <p className='font-bold text-2xl py-3 text-red-800 capitalize'>{name}</p>
+        <p className='text-xl py-1 capitalize font-semibold'>{job}</p>
+        <p className='indent-3 py-1 capitalize'>{description}</p>
         <button className='px-4 py-1 bg-blue-700 text-white' onClick={()=>navigate("/")}>Go Back</button>
       </div>
       )

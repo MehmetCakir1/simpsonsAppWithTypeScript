@@ -20,7 +20,7 @@ const Singlesimpson = ({item}:ISimpsonProps) => {
       <img src={avatar.split("revision")[0]} alt={name} className=" h-[90px] w-2/12 sm:w-1/12 max-w-[60px] cursor-pointer"
       onClick={()=>navigate(`/details/${id}`,{state:item})}
       />
-      <h1 className='w-5/12 sm:w-6-12 text-lg cursor-pointer'
+      <h1 className='w-5/12 sm:w-6-12 text-lg cursor-pointer capitalize'
       onClick={()=>navigate(`/details/${id}`,{state:item})}
       >{name}</h1>
       <button className='w-1/12 flex items-center justify-center text-2xl text-cyan-500 bg-transparent'
